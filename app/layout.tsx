@@ -4,6 +4,7 @@ import "./globals.css";
 import ConvexClientProvider from "@/provider/ConvexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { Toaster } from "sonner";
+import ModalProvider from "@/provider/ModalProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <body className={`${poppins.className} antialiased`}>
           <ConvexClientProvider>
             <Toaster />
+            <ModalProvider />
             {children}
           </ConvexClientProvider>
         </body>
