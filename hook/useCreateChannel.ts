@@ -10,10 +10,10 @@ export type Options = {
   throwError?: boolean;
 };
 
-type ResponseType = Id<"workspaces">;
-type RequestType = { id: Id<"workspaces"> };
+type ResponseType = Id<"channels">;
+type RequestType = { name: string; workspaceId: Id<"workspaces"> };
 
-export const useDeleteWorkSpace = () => {
+export const useCreateChannel = () => {
   const [data, setData] = useState<ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -25,7 +25,7 @@ export const useDeleteWorkSpace = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.workspaces.remove);
+  const mutation = useMutation(api.channels.create);
 
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {

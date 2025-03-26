@@ -11,9 +11,9 @@ export type Options = {
 };
 
 type ResponseType = Id<"workspaces">;
-type RequestType = { id: Id<"workspaces"> };
+type RequestType = { workspaceId: Id<"workspaces">; joinCode: string };
 
-export const useDeleteWorkSpace = () => {
+export const useJoin = () => {
   const [data, setData] = useState<ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -25,7 +25,7 @@ export const useDeleteWorkSpace = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.workspaces.remove);
+  const mutation = useMutation(api.workspaces.join);
 
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {

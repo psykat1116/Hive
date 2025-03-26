@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import WorkSpaceModal from "@/components/modal/WorkSpaceModal";
+import ChannelModal from "@/components/modal/ChannelModal";
 
 const ModalProvider = () => {
   const [mounted, setMounted] = useState(false);
@@ -14,6 +15,7 @@ const ModalProvider = () => {
   return (
     <>
       <WorkSpaceModal />
+      <ChannelModal />
     </>
   );
 };
