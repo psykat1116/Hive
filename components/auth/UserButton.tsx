@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Loader, LogOut } from "lucide-react";
@@ -40,26 +41,27 @@ const UserButton = () => {
         align="start"
         sideOffset={10}
         side="top"
-        className="w-60 gap-2"
+        className="w-60 gap-2 px-2"
       >
-        <DropdownMenuItem className="flex gap-4 items-center">
-          <Avatar className="size-10 hover:opacity-75 transition">
+        <DropdownMenuItem className="flex gap-2 items-center justify-between">
+          <Avatar className="size-8 hover:opacity-75 transition">
             <AvatarImage src={image} alt={name} />
             <AvatarFallback className="bg-sky-600">
               {avatarFallback}
             </AvatarFallback>
           </Avatar>
-          <div className="flex flex-col">
+          <div className="flex flex-col text-right">
             <span className="font-semibold">{name}</span>
             <span className="text-muted-foreground text-[11px]">{email}</span>
           </div>
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={signOut}
-          className="text-md font-semibold cursor-pointer h-12"
+          className="cursor-pointer h-8 flex justify-between items-center"
         >
-          <LogOut className="size-5 text-red-500 ml-2.5 mr-4" />
-          Log out
+          <LogOut className="size-3 ml-2" />
+          <p className="text-xs">Log out</p>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -2,6 +2,12 @@
 import Sidebar from "@/components/sidebar/Sidebar";
 import ToolBar from "@/components/toolbar/ToolBar";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import WorkSpaceSidebar from "@/components/workspace/WorkSpaceSidebar";
 
 interface WorkSpaceIdLayoutProps {
   children: React.ReactNode;
@@ -14,7 +20,17 @@ const WorkSpaceIdLayout = ({ children }: WorkSpaceIdLayoutProps) => {
       <ToolBar workspaceId={workspaceId} />
       <div className="flex h-[calc(100vh-40px)]">
         <Sidebar />
-        {children}
+        <ResizablePanelGroup direction="horizontal" autoSaveId="hive-workspace">
+          <ResizablePanel
+            defaultSize={20}
+            minSize={11}
+            className="bg-[#5e2c5f]"
+          >
+            <WorkSpaceSidebar />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel minSize={20}>{children}</ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );

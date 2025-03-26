@@ -9,5 +9,8 @@ export type Options = {
   throwError?: boolean;
 };
 
-export type Requestype = { name: string };
+export type RequestType =
+  | { id: Id<"workspaces">; name: string }
+  | { name: string }
+  | { id: Id<"workspaces"> };
 export type ResponseType = Id<"workspaces">;
