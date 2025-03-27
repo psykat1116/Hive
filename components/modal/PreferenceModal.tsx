@@ -52,8 +52,8 @@ const PreferenceModal = ({
           toast.success("Workspace updated successfully");
           setEditOpen(false);
         },
-        onError: (error) => {
-          toast.error(error.message);
+        onError: () => {
+          toast.error("Failed to update workspace");
         },
       }
     );
@@ -130,7 +130,7 @@ const PreferenceModal = ({
             <button
               disabled={isDeletingWorkSpace}
               onClick={handleRemove}
-              className="flex items-center gap-x-2 px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50 text-rose-600"
+              className="flex items-center justify-between gap-x-2 px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50 text-rose-600"
             >
               <Trash className="size-4" />
               <p className="text-sm font-semibold">Delete Workspace</p>

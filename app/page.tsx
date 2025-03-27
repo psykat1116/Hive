@@ -21,7 +21,7 @@ const Home = () => {
     } else if (!open) {
       setOpen(true);
     }
-  }, [workspaceId, isLoading, open, setOpen]);
+  }, [workspaceId, isLoading, open, setOpen, router]);
 
   return (
     <div>

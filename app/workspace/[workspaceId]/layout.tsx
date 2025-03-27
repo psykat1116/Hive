@@ -24,12 +24,13 @@ const WorkSpaceIdLayout = ({ children }: WorkSpaceIdLayoutProps) => {
           <ResizablePanel
             defaultSize={20}
             minSize={11}
+            maxSize={30}
             className="bg-[#5e2c5f]"
           >
             <WorkSpaceSidebar />
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel minSize={20}>{children}</ResizablePanel>
+          <ResizablePanel minSize={60}>{children}</ResizablePanel>
         </ResizablePanelGroup>
       </div>
     </div>
