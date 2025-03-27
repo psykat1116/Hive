@@ -20,7 +20,6 @@ type CreateMessageValue = {
 };
 
 const ChatInput = ({ placeholder }: ChatInputProps) => {
-  const [editorKey, setEditorKey] = useState(0);
   const [pending, setPending] = useState(false);
   const editorRef = useRef<Quill | null>(null);
   const workspaceId = useWorkSpaceId();
@@ -42,7 +41,7 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
     console.log(body, image);
     try {
       setPending(true);
-      // editorRef.current?.setContents([{ insert: "\n" }]);
+      editorRef.current?.setContents([{ insert: "\n" }]);
       editorRef.current?.enable(false);
 
       const values: CreateMessageValue = {
@@ -77,7 +76,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
       toast.error("Failed to send message");
     } finally {
       setPending(false);
-      setEditorKey((prev) => prev + 1);
       editorRef.current?.enable(true);
     }
   };
@@ -85,7 +83,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
   return (
     <div className="px-5 w-full">
       <Editor
-        key={editorKey}
         onSubmit={handleSubmit}
         placeholder={placeholder}
         disabled={pending}

@@ -71,7 +71,6 @@ const Editor = ({
           ["link", "blockquote", "code-block"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ script: "sub" }, { script: "super" }],
-          [{ indent: "-1" }, { indent: "+1" }],
           [{ direction: "rtl" }, { direction: "ltr" }],
           [{ align: [] }],
           [{ color: [] }, { background: [] }],
@@ -82,6 +81,7 @@ const Editor = ({
           bindings: {
             enter: {
               key: "Enter",
+              shiftKey: true,
               handler: () => {
                 const text = quill.getText();
                 const addedImage = imageRef.current?.files![0] || null;
@@ -97,11 +97,13 @@ const Editor = ({
                   image: addedImage,
                   body,
                 });
+
+                setImage(null);
+                imageRef.current!.value = "";
               },
             },
             shift_enter: {
               key: "Enter",
-              shiftKey: true,
               handler: () => {
                 quill.insertText(quill.getSelection()?.index || 0, "\n");
               },
@@ -279,7 +281,7 @@ const Editor = ({
           )}
         >
           <kbd>
-            <strong>Shift + Return</strong> to add a new line
+            <strong>Shift + Enter</strong> To Send
           </kbd>
         </div>
       )}
