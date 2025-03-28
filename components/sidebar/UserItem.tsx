@@ -30,7 +30,7 @@ interface UserItemProps {
 
 const UserItem = ({ id, label = "Member", image, variant }: UserItemProps) => {
   const workspaceId = useWorkSpaceId();
-  const fallBack = label[0].toLowerCase();
+  const fallBack = label[0].toUpperCase();
 
   return (
     <Button

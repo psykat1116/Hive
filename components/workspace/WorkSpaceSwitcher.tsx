@@ -1,10 +1,8 @@
-import React from "react";
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
@@ -21,7 +19,7 @@ const WorkSpaceSwitcher = () => {
   const { data: workspace, isLoading: workspaceLoading } = useGetWorkSpace({
     id: workspaceId,
   });
-  const { data: workspaces, isLoading: workspacesLoading } = useGetWorkSpaces();
+  const { data: workspaces } = useGetWorkSpaces();
 
   const filteredWorkspaces = workspaces?.filter((w) => w._id !== workspaceId);
 

@@ -1,16 +1,12 @@
 "use client";
-import React, { use } from "react";
 import { Button } from "../ui/button";
 import { Info, Search } from "lucide-react";
 import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
-import { Id } from "@/convex/_generated/dataModel";
+import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
 
-interface ToolBarProps {
-  workspaceId: string;
-}
-
-const ToolBar = ({ workspaceId }: ToolBarProps) => {
-  const { data } = useGetWorkSpace({ id: workspaceId as Id<"workspaces"> });
+const ToolBar = () => {
+  const workspaceId = useWorkSpaceId();
+  const { data } = useGetWorkSpace({ id: workspaceId });
 
   return (
     <nav className="bg-[#481349] flex items-center justify-between h-10 p-1.5">

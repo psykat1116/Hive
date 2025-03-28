@@ -74,7 +74,6 @@ const Editor = ({
           [{ direction: "rtl" }, { direction: "ltr" }],
           [{ align: [] }],
           [{ color: [] }, { background: [] }],
-          [{ font: [] }],
           [{ size: ["small", false, "large", "huge"] }],
         ],
         keyboard: {

@@ -13,6 +13,7 @@ import { useDeleteMessage } from "@/hook/useDeleteMessage";
 import { useConfirm } from "@/hook/useConfirm";
 import { useToggleReaction } from "@/hook/useToggleReaction";
 import Reactions from "./Reactions";
+import { usePanel } from "@/hook/usePanel";
 // import Renderer from "./Renderer";
 
 interface MessageProps {
@@ -64,6 +65,7 @@ const Message = ({
   hideThreadButton,
   threadCount,
 }: MessageProps) => {
+  const { onOpenMessage, onClose, parentMessageId } = usePanel();
   const { mutate: updateMessage, isPending: isUpdatingMessage } =
     useUpdateMessage();
   const { mutate: deleteMessage, isPending: isDeletingMessage } =
@@ -118,7 +120,9 @@ const Message = ({
       {
         onSuccess: () => {
           toast.success("Message deleted successfully");
-          //TODO: Close Thread If Open
+          if (parentMessageId === id) {
+            onClose();
+          }
         },
         onError: () => {
           toast.error("Failed to delete message");
@@ -175,7 +179,7 @@ const Message = ({
               handleEdit={() => {
                 setEditingId(id);
               }}
-              handleThread={() => {}}
+              handleThread={() => onOpenMessage(id)}
               handleDelete={handleDeleteMessage}
               handleReaction={handleReaction}
               hideThreadButton={hideThreadButton}
@@ -246,7 +250,7 @@ const Message = ({
             handleEdit={() => {
               setEditingId(id);
             }}
-            handleThread={() => {}}
+            handleThread={() => onOpenMessage(id)}
             handleDelete={handleDeleteMessage}
             handleReaction={handleReaction}
             hideThreadButton={hideThreadButton}

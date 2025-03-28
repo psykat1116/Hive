@@ -8,22 +8,22 @@ import Quill from "quill";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-interface ChatInputProps {
+interface ConversationInputProps {
   placeholder: string;
+  conversationId: Id<"conversations">;
 }
 
 type CreateMessageValue = {
-  channelId: Id<"channels">;
+  conversationId: Id<"conversations">;
   workspaceId: Id<"workspaces">;
   body: string;
   image?: Id<"_storage">;
 };
 
-const ChatInput = ({ placeholder }: ChatInputProps) => {
+const ConversationInput = ({ placeholder, conversationId }: ConversationInputProps) => {
   const [pending, setPending] = useState(false);
   const editorRef = useRef<Quill | null>(null);
   const workspaceId = useWorkSpaceId();
-  const channelId = useChannelId();
 
   const { mutate: generateURL } = useUpload();
   const { mutate: createMessage } = useCreateMessage();
@@ -45,7 +45,7 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
       editorRef.current?.enable(false);
 
       const values: CreateMessageValue = {
-        channelId,
+        conversationId,
         workspaceId,
         body,
         image: undefined,
@@ -92,4 +92,4 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
   );
 };
 
-export default ChatInput;
+export default ConversationInput;

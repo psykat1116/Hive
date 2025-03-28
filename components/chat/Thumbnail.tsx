@@ -7,7 +7,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/dialog";
-import { X } from "lucide-react";
 
 interface ThumbnailProps {
   url: string | null | undefined;

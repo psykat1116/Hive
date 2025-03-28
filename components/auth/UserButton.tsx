@@ -10,7 +10,6 @@ import {
 } from "../ui/dropdown-menu";
 import { Loader, LogOut } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
-import Image from "next/image";
 
 const UserButton = () => {
   const { signOut } = useAuthActions();

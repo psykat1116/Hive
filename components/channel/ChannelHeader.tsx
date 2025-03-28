@@ -43,7 +43,7 @@ const ChannelHeader = ({ name }: ChannelHeaderProps) => {
     "You are about to delete the channel and its conversations. This Action Is Irreversible"
   );
 
-  const handleOpen = (value: boolean) => {
+  const handleOpen = () => {
     if (member?.role !== "admin") return;
     setEditOpen(true);
   };

@@ -2,7 +2,6 @@ import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
 import {
   Dialog,
   DialogTitle,
-  DialogDescription,
   DialogHeader,
   DialogContent,
 } from "../ui/dialog";
