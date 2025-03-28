@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.0.17",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react-dom": "^19",
