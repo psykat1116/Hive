@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import ModalProvider from "@/provider/ModalProvider";
 import ConvexClientProvider from "@/provider/ConvexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
-import { Toaster } from "sonner";
-import ModalProvider from "@/provider/ModalProvider";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
 
-const poppins = Poppins({
+const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   subsets: ["latin", "latin-ext"],
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
-        <body className={`${poppins.className} antialiased`}>
+        <body className={`${inter.className} antialiased`}>
           <ConvexClientProvider>
             <NuqsAdapter>
               <Toaster />

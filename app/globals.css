@@ -138,7 +138,6 @@ html {
 }
 
 .ql-container {
-  font-family: "Lato", sans-serif !important;
   border: none !important;
   height: unset !important;
 }
@@ -148,7 +147,6 @@ html {
   padding: 8px 12px !important;
   color: #1d1c1d !important;
   font-weight: 400 !important;
-  font-family: "Lato", sans-serif !important;
   font-size: 14px !important;
 }
 
@@ -166,7 +164,6 @@ html {
 
 .ql-editor::before {
   left: 12px !important;
-  font-family: "Lato", sans-serif !important;
   color: "#8d8d8d" !important;
   font-size: 14px !important;
   font-weight: 400 !important;
