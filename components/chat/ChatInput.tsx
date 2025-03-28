@@ -38,7 +38,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
     body: string;
     image: File | null;
   }) => {
-    console.log(body, image);
     try {
       setPending(true);
       editorRef.current?.setContents([{ insert: "\n" }]);
@@ -72,8 +71,8 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
       }
 
       createMessage(values, { throwError: true });
-    } catch (error: any) {
-      toast.error("Failed to send message" + error.message);
+    } catch (error) {
+      toast.error("Failed to send message");
     } finally {
       setPending(false);
       editorRef.current?.enable(true);

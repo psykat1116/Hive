@@ -10,13 +10,13 @@ export type Options = {
   throwError?: boolean;
 };
 
-type ResponseType = Id<"reactions">;
+type ResponseType = Id<"members">;
 type RequestType = {
-  value: string;
-  messageId: Id<"messages">;
+  id: Id<"members">;
+  role: "admin" | "member";
 };
 
-export const useToggleReaction = () => {
+export const useUpdateMember = () => {
   const [data, setData] = useState<ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -28,7 +28,7 @@ export const useToggleReaction = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.reaction.toggle);
+  const mutation = useMutation(api.members.update);
 
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {

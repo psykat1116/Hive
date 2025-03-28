@@ -3,10 +3,10 @@ import { useGetMember } from "@/hook/useGetMember";
 import { useGetMessages } from "@/hook/useGetMessages";
 import { useMemberId } from "@/hook/useMemberId";
 import { Loader } from "lucide-react";
-import React from "react";
 import ConversationHeader from "./ConversationHeader";
 import ConversationInput from "./ConversationInput";
 import MessageList from "../chat/MessageList";
+import { usePanel } from "@/hook/usePanel";
 
 interface ConversationProps {
   id: Id<"conversations">;
@@ -14,6 +14,7 @@ interface ConversationProps {
 
 const Conversation = ({ id }: ConversationProps) => {
   const memberId = useMemberId();
+  const { onOpenProfile } = usePanel();
   const { data: member, isLoading: memberLoading } = useGetMember({
     id: memberId,
   });
@@ -32,7 +33,7 @@ const Conversation = ({ id }: ConversationProps) => {
       <ConversationHeader
         memberName={member?.user.name}
         memberImage={member?.user.image}
-        onClick={() => {}}
+        onClick={() => onOpenProfile(memberId)}
       />
       <MessageList
         data={results}

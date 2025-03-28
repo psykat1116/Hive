@@ -107,8 +107,8 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
       }
 
       createMessage(values, { throwError: true });
-    } catch (error: any) {
-      toast.error("Failed to send message" + error.message);
+    } catch (error) {
+      toast.error("Failed to send message");
     } finally {
       setPending(false);
       editorRef.current?.enable(true);
@@ -204,6 +204,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
                   createdAt={message._creationTime}
                   threadCount={message.threadCount}
                   threadImage={message.threadImage}
+                  threadName={message.threadName}
                   threadTimestamp={message.threadTimestamp}
                   isEditing={editingId === message._id}
                   setEditingId={setEditingId}

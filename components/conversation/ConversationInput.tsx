@@ -1,5 +1,4 @@
 import { Id } from "@/convex/_generated/dataModel";
-import { useChannelId } from "@/hook/useChannelId";
 import { useCreateMessage } from "@/hook/useCreateMessage";
 import { useUpload } from "@/hook/useUpload";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
@@ -20,7 +19,10 @@ type CreateMessageValue = {
   image?: Id<"_storage">;
 };
 
-const ConversationInput = ({ placeholder, conversationId }: ConversationInputProps) => {
+const ConversationInput = ({
+  placeholder,
+  conversationId,
+}: ConversationInputProps) => {
   const [pending, setPending] = useState(false);
   const editorRef = useRef<Quill | null>(null);
   const workspaceId = useWorkSpaceId();
@@ -72,8 +74,8 @@ const ConversationInput = ({ placeholder, conversationId }: ConversationInputPro
       }
 
       createMessage(values, { throwError: true });
-    } catch (error: any) {
-      toast.error("Failed to send message" + error.message);
+    } catch (error) {
+      toast.error("Failed to send message");
     } finally {
       setPending(false);
       editorRef.current?.enable(true);
