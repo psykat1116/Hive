@@ -1,15 +1,15 @@
 import "./globals.css";
 import { Toaster } from "sonner";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ModalProvider from "@/provider/ModalProvider";
 import ConvexClientProvider from "@/provider/ConvexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 
-const inter = Inter({
+const inter = Geist({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  style: ["normal"],
   subsets: ["latin", "latin-ext"],
 });
 
@@ -26,17 +26,17 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en">
-        <body className={`${inter.className} antialiased`}>
-          <ConvexClientProvider>
-            <NuqsAdapter>
+      <ConvexClientProvider>
+        <NuqsAdapter>
+          <html lang="en">
+            <body className={`${inter.className} antialiased`}>
               <Toaster />
               <ModalProvider />
               {children}
-            </NuqsAdapter>
-          </ConvexClientProvider>
-        </body>
-      </html>
+            </body>
+          </html>
+        </NuqsAdapter>
+      </ConvexClientProvider>
     </ConvexAuthNextjsServerProvider>
   );
 }
