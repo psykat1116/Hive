@@ -9,10 +9,10 @@ import {
   Plus,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
-import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
 import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
-import { useCurrentMember } from "@/hook/useCurrentMember";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 
 const Sidebar = () => {
   const router = useRouter();

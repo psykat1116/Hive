@@ -6,10 +6,10 @@ import Hint from "../Hint";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Thumbnail from "./Thumbnail";
 import MessageToolbar from "./MessageToolbar";
-import { useUpdateMessage } from "@/hook/useUpdateMessage";
+import { useUpdateMessage } from "@/hook/message/useUpdateMessage";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { useDeleteMessage } from "@/hook/useDeleteMessage";
+import { useDeleteMessage } from "@/hook/message/useDeleteMessage";
 import { useConfirm } from "@/hook/useConfirm";
 import { useToggleReaction } from "@/hook/useToggleReaction";
 import Reactions from "./Reactions";
@@ -69,12 +69,7 @@ const Message = ({
   threadName,
   threadTimestamp,
 }: MessageProps) => {
-  const {
-    onClose,
-    onOpenMessage,
-    onOpenProfile,
-    parentMessageId,
-  } = usePanel();
+  const { onClose, onOpenMessage, onOpenProfile, parentMessageId } = usePanel();
   const { mutate: updateMessage, isPending: isUpdatingMessage } =
     useUpdateMessage();
   const { mutate: deleteMessage, isPending: isDeletingMessage } =

@@ -1,16 +1,16 @@
-import { useCurrentMember } from "@/hook/useCurrentMember";
-import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
+import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { AlertTriangle, HashIcon, Loader } from "lucide-react";
 import WorkSpaceHeader from "./WorkSpaceHeader";
 import SidebarItem from "@/components/sidebar/SidebarItem";
-import { useGetChannels } from "@/hook/useGetChannels";
+import { useGetChannels } from "@/hook/channel/useGetChannels";
 import WorkSpaceSection from "./WorkSpaceSection";
-import { useGetMembers } from "@/hook/useGetMembers";
+import { useGetMembers } from "@/hook/member/useGetMembers";
 import UserItem from "@/components/sidebar/UserItem";
 import { useCreateChannelModal } from "@/store/useCreateChannelModal";
-import { useChannelId } from "@/hook/useChannelId";
-import { useMemberId } from "@/hook/useMemberId";
+import { useChannelId } from "@/hook/params/useChannelId";
+import { useMemberId } from "@/hook/params/useMemberId";
 import { usePathname } from "next/navigation";
 
 const WorkSpaceSidebar = () => {

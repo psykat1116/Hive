@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useGetWorkSpaceInfo } from "@/hook/useGetWorkSpaceInfo";
-import { useJoin } from "@/hook/useJoin";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useGetWorkSpaceInfo } from "@/hook/workspace/useGetWorkSpaceInfo";
+import { useJoin } from "@/hook/workspace/useJoin";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import Image from "next/image";

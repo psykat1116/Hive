@@ -4,7 +4,7 @@ import { MoveRight } from "lucide-react";
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useGetWorkSpaces } from "@/hook/useGetWorkSpaces";
+import { useGetWorkSpaces } from "@/hook/workspace/useGetWorkSpaces";
 import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
 
 const Home = () => {

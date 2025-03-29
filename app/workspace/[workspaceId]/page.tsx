@@ -2,10 +2,10 @@
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, Loader } from "lucide-react";
-import { useGetChannels } from "@/hook/useGetChannels";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
-import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
-import { useCurrentMember } from "@/hook/useCurrentMember";
+import { useGetChannels } from "@/hook/channel/useGetChannels";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 import { useCreateChannelModal } from "@/store/useCreateChannelModal";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";

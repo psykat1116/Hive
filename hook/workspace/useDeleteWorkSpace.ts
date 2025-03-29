@@ -3,25 +3,12 @@ import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
+import { W_Options } from "@/type";
+import { W_ResponseType } from "@/type";
+import { W_R_RequestType } from "@/type";
 
-type ResponseType = Id<"messages">;
-type RequestType = {
-  body: string;
-  image?: Id<"_storage">;
-  workspaceId: Id<"workspaces">;
-  channelId?: Id<"channels">;
-  parentMessageId?: Id<"messages">;
-  conversationId?: Id<"conversations">;
-};
-
-export const useCreateMessage = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+export const useDeleteWorkSpace = () => {
+  const [data, setData] = useState<W_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -32,10 +19,10 @@ export const useCreateMessage = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.messages.create);
+  const mutation = useMutation(api.workspaces.remove);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: W_R_RequestType, options?: W_Options) => {
       try {
         setData(null);
         setError(null);

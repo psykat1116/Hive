@@ -2,9 +2,9 @@
 
 import Conversation from "@/components/conversation/Conversation";
 import { Id } from "@/convex/_generated/dataModel";
-import { useCreateOrGetConversation } from "@/hook/useCreateOrGetConversation";
-import { useMemberId } from "@/hook/useMemberId";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useCreateOrGetConversation } from "@/hook/conversation/useCreateOrGetConversation";
+import { useMemberId } from "@/hook/params/useMemberId";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { AlertTriangle, Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

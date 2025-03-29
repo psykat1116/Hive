@@ -2,17 +2,10 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
-
-type ResponseType = string;
+import { Upload_Options } from "@/type";
 
 export const useUpload = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+  const [data, setData] = useState<string | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -26,7 +19,7 @@ export const useUpload = () => {
   const mutation = useMutation(api.upload.generateUploadUrl);
 
   const mutate = useCallback(
-    async (_values: {}, options?: Options) => {
+    async (_values: {}, options?: Upload_Options) => {
       try {
         setData(null);
         setError(null);

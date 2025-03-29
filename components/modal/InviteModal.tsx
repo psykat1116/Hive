@@ -9,9 +9,9 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Copy, RefreshCcw } from "lucide-react";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { toast } from "sonner";
-import { useUpdateCode } from "@/hook/useUpdateCode";
+import { useUpdateCode } from "@/hook/workspace/useUpdateCode";
 import { useConfirm } from "@/hook/useConfirm";
 
 interface InviteModalProps {

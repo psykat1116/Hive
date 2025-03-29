@@ -1,7 +1,7 @@
 import { Id } from "@/convex/_generated/dataModel";
-import { useCreateMessage } from "@/hook/useCreateMessage";
+import { useCreateMessage } from "@/hook/message/useCreateMessage";
 import { useUpload } from "@/hook/useUpload";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import dynamic from "next/dynamic";
 import Quill from "quill";
 import { useRef, useState } from "react";

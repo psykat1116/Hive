@@ -11,8 +11,8 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useCreateChannel } from "@/hook/useCreateChannel";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useCreateChannel } from "@/hook/channel/useCreateChannel";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import Header from "../Header";
 
 const ChannelModal = () => {

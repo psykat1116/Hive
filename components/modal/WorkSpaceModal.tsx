@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateWorkSpace } from "@/hook/useCreateWorkSpace";
+import { useCreateWorkSpace } from "@/hook/workspace/useCreateWorkSpace";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";

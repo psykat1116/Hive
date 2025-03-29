@@ -1,22 +1,13 @@
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
+import { M_Options } from "@/type";
+import { M_ResponseType } from "@/type";
+import { M_C_RequestType } from "@/type";
 
-type ResponseType = Id<"members">;
-type RequestType = {
-  id: Id<"members">;
-};
-
-export const useDeleteMember = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+export const useCreateMessage = () => {
+  const [data, setData] = useState<M_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -27,10 +18,10 @@ export const useDeleteMember = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.members.remove);
+  const mutation = useMutation(api.messages.create);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: M_C_RequestType, options?: M_Options) => {
       try {
         setData(null);
         setError(null);

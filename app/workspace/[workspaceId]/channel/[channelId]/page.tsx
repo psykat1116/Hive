@@ -2,9 +2,9 @@
 import ChannelHeader from "@/components/channel/ChannelHeader";
 import ChatInput from "@/components/chat/ChatInput";
 import MessageList from "@/components/chat/MessageList";
-import { useChannelId } from "@/hook/useChannelId";
-import { useGetChannel } from "@/hook/useGetChannel";
-import { useGetMessages } from "@/hook/useGetMessages";
+import { useChannelId } from "@/hook/params/useChannelId";
+import { useGetChannel } from "@/hook/channel/useGetChannel";
+import { useGetMessages } from "@/hook/message/useGetMessages";
 import { AlertTriangle, Loader } from "lucide-react";
 
 const ChannelIdPage = () => {

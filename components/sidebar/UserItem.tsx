@@ -4,7 +4,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 
 const userItemVariants = cva(
   "flex items-center gap-1.5 justify-start h-7 px-1 text-sm overflow-hidden",

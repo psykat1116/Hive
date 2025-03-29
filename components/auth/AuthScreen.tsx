@@ -1,6 +1,5 @@
 "use client";
-
-import { SignInFlow } from "@/types/auth";
+import { SignInFlow } from "@/type";
 import { useState } from "react";
 import SignInCard from "./SignInCard";
 import SignUpCard from "./SignUpCard";

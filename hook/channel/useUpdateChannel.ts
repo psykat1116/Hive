@@ -1,20 +1,13 @@
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
+import { CH_Options } from "@/type";
+import { CH_ResponseType } from "@/type";
+import { CH_U_RequestType } from "@/type";
 
-type ResponseType = Id<"channels">;
-type RequestType = { id: Id<"channels"> };
-
-export const useDeleteChannel = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+export const useUpdateChannel = () => {
+  const [data, setData] = useState<CH_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -25,10 +18,10 @@ export const useDeleteChannel = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.channels.remove);
+  const mutation = useMutation(api.channels.update);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: CH_U_RequestType, options?: CH_Options) => {
       try {
         setData(null);
         setError(null);

@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
-import { useGetWorkSpaces } from "@/hook/useGetWorkSpaces";
+import { useGetWorkSpaces } from "@/hook/workspace/useGetWorkSpaces";
 
 interface WorkSpaceHeaderProps {
   workspace: Doc<"workspaces">;
@@ -42,7 +42,7 @@ const WorkSpaceHeader = ({ workspace }: WorkSpaceHeaderProps) => {
       <Button
         onClick={() => setIsOpen(true)}
         variant="transparent"
-        className="font-semibold text-lg w-auto max-w-[20rem] p-1 overflow-hidden justify-between rounded-sm"
+        className="font-semibold text-lg w-full p-1 overflow-hidden justify-between rounded-sm"
       >
         <span className="truncate">{workspace.name}</span>
         <ChevronUpIcon className="size-4 shrink-0 ml-2" />

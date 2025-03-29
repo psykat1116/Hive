@@ -1,6 +1,5 @@
-import React from "react";
-import { format } from "date-fns";
 import Image from "next/image";
+import { format } from "date-fns";
 
 interface ChannelHeroProps {
   name: string;

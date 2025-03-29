@@ -1,23 +1,13 @@
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
+import { W_Options } from "@/type";
+import { W_ResponseType } from "@/type";
+import { W_N_RequestType } from "@/type";
 
-type ResponseType = Id<"members">;
-type RequestType = {
-  id: Id<"members">;
-  role: "admin" | "member";
-};
-
-export const useUpdateMember = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+export const useUpdateCode = () => {
+  const [data, setData] = useState<W_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -28,10 +18,10 @@ export const useUpdateMember = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.members.update);
+  const mutation = useMutation(api.workspaces.newJoinCode);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: W_N_RequestType, options?: W_Options) => {
       try {
         setData(null);
         setError(null);

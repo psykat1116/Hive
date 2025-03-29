@@ -1,11 +1,11 @@
-import { GetMessagesReturnType } from "@/hook/useGetMessages";
+import { GetMessagesReturnType } from "@/hook/message/useGetMessages";
 import React, { useState } from "react";
 import { differenceInMinutes, format, isToday, isYesterday } from "date-fns";
 import Message from "./Message";
 import ChannelHero from "../channel/ChannelHero";
 import { Id } from "@/convex/_generated/dataModel";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
-import { useCurrentMember } from "@/hook/useCurrentMember";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 import { Loader } from "lucide-react";
 import ConversationHero from "../conversation/ConversationHero";
 

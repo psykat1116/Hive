@@ -5,13 +5,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { SignInFlow } from "@/types/auth";
+import { SignInFlow } from "@/type";
 import Image from "next/image";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { toast } from "sonner";

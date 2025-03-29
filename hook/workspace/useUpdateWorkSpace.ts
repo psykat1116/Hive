@@ -1,20 +1,13 @@
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
+import { W_Options } from "@/type";
+import { W_ResponseType } from "@/type";
+import { W_U_RequestType } from "@/type";
 
-type ResponseType = Id<"channels">;
-type RequestType = { name: string; workspaceId: Id<"workspaces"> };
-
-export const useCreateChannel = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+export const useUpdateWorkSpace = () => {
+  const [data, setData] = useState<W_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -25,10 +18,10 @@ export const useCreateChannel = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.channels.create);
+  const mutation = useMutation(api.workspaces.update);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: W_U_RequestType, options?: W_Options) => {
       try {
         setData(null);
         setError(null);

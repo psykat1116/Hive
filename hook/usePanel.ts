@@ -1,9 +1,10 @@
-import { useParentMessageId } from "./useParentMessageId";
-import { useMemberProfileId } from "./useMemberProfileId";
+import { useQueryState } from "nuqs";
 
 export const usePanel = () => {
-  const [parentMessageId, setParentMessageId] = useParentMessageId();
-  const [memberProfileId, setMemberProfileId] = useMemberProfileId();
+  const [parentMessageId, setParentMessageId] =
+    useQueryState("parentMessageId");
+  const [memberProfileId, setMemberProfileId] =
+    useQueryState("memberProfileId");
 
   const onOpenMessage = (messageId: string) => {
     setParentMessageId(messageId);

@@ -1,7 +1,7 @@
 import { Id } from "@/convex/_generated/dataModel";
-import { useGetMember } from "@/hook/useGetMember";
-import { useGetMessages } from "@/hook/useGetMessages";
-import { useMemberId } from "@/hook/useMemberId";
+import { useGetMember } from "@/hook/member/useGetMember";
+import { useGetMessages } from "@/hook/message/useGetMessages";
+import { useMemberId } from "@/hook/params/useMemberId";
 import { Loader } from "lucide-react";
 import ConversationHeader from "./ConversationHeader";
 import ConversationInput from "./ConversationInput";

@@ -1,23 +1,13 @@
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Doc, Id } from "@/convex/_generated/dataModel";
 
-export type Options = {
-  onSuccess?: (data: ResponseType) => void;
-  onError?: (error: Error) => void;
-  onSettled?: () => void;
-  throwError?: boolean;
-};
-
-type ResponseType = Id<"conversations">;
-type RequestType = {
-  workspaceId: Id<"workspaces">;
-  memberId: Id<"members">;
-};
+import { C_ResponseType } from "@/type";
+import { C_Options } from "@/type";
+import { C_C_OR_G_RequestType } from "@/type";
 
 export const useCreateOrGetConversation = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+  const [data, setData] = useState<C_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -31,7 +21,7 @@ export const useCreateOrGetConversation = () => {
   const mutation = useMutation(api.conversations.createOrget);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: C_C_OR_G_RequestType, options?: C_Options) => {
       try {
         setData(null);
         setError(null);

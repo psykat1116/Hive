@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "../ui/button";
 import { Info, Search } from "lucide-react";
-import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,15 +13,14 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { useState } from "react";
-import { useGetChannels } from "@/hook/useGetChannels";
-import { useGetMembers } from "@/hook/useGetMembers";
+import { useGetChannels } from "@/hook/channel/useGetChannels";
+import { useGetMembers } from "@/hook/member/useGetMembers";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import UserButton from "../auth/UserButton";
 import Link from "next/link";
-import { useMemberId } from "@/hook/useMemberId";
-import { useCurrentMember } from "@/hook/useCurrentMember";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 
 const ToolBar = () => {
   const router = useRouter();

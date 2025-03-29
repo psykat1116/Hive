@@ -6,11 +6,11 @@ import {
   DialogHeader,
 } from "@/components/ui/dialog";
 import { Trash } from "lucide-react";
-import { useUpdateWorkSpace } from "@/hook/useUpdateWorkSpace";
-import { useDeleteWorkSpace } from "@/hook/useDeleteWorkSpace";
+import { useUpdateWorkSpace } from "@/hook/workspace/useUpdateWorkSpace";
+import { useDeleteWorkSpace } from "@/hook/workspace/useDeleteWorkSpace";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useConfirm } from "@/hook/useConfirm";

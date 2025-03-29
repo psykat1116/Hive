@@ -3,6 +3,10 @@ import { api } from "@/convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
 
+import { R_Options } from "@/type";
+import { R_ResponseType } from "@/type";
+import { R_T_RequestType } from "@/type";
+
 export type Options = {
   onSuccess?: (data: ResponseType) => void;
   onError?: (error: Error) => void;
@@ -17,7 +21,7 @@ type RequestType = {
 };
 
 export const useToggleReaction = () => {
-  const [data, setData] = useState<ResponseType | null>(null);
+  const [data, setData] = useState<R_ResponseType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "pending" | "settled" | null
@@ -31,7 +35,7 @@ export const useToggleReaction = () => {
   const mutation = useMutation(api.reaction.toggle);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (values: R_T_RequestType, options?: R_Options) => {
       try {
         setData(null);
         setError(null);

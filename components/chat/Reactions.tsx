@@ -1,6 +1,6 @@
 import { Doc, Id } from "@/convex/_generated/dataModel";
-import { useCurrentMember } from "@/hook/useCurrentMember";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { cn } from "@/lib/utils";
 import React from "react";
 import Hint from "../Hint";
