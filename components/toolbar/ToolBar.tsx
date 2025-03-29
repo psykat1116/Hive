@@ -16,6 +16,12 @@ import { useState } from "react";
 import { useGetChannels } from "@/hook/useGetChannels";
 import { useGetMembers } from "@/hook/useGetMembers";
 import { useRouter } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
+import UserButton from "../auth/UserButton";
+import Link from "next/link";
+import { useMemberId } from "@/hook/useMemberId";
+import { useCurrentMember } from "@/hook/useCurrentMember";
 
 const ToolBar = () => {
   const router = useRouter();
@@ -24,6 +30,9 @@ const ToolBar = () => {
   const { data } = useGetWorkSpace({ id: workspaceId });
   const { data: channels } = useGetChannels({ workspaceId });
   const { data: members } = useGetMembers({ workspaceId });
+  const { data: member } = useCurrentMember({
+    workspaceId,
+  });
 
   const onChannelClick = (id: string) => {
     setOpen(false);
@@ -36,43 +45,63 @@ const ToolBar = () => {
   };
 
   return (
-    <nav className="bg-[#481349] flex items-center justify-between h-10 p-1.5">
-      <div className="flex-1" />
-      <div className="min-w-[280px] max-w-[642px] grow-[2] shrink">
+    <nav className="bg-[#481349] flex items-center justify-between h-13 p-1.5 px-3.5 gap-4">
+      <Link
+        href="/"
+        className="flex items-center gap-1 text-xl font-semibold text-white"
+      >
+        <Image src="/logo.svg" alt="Logo" height={30} width={30} />
+      </Link>
+      <div className="min-w-[100px] max-w-[642px] grow-[2] shrink">
         <Button
           size="sm"
           onClick={() => setOpen(true)}
-          className="bg-accent/25 hover:bg-accent/25 w-full justify-start h-7 px-2"
+          className="bg-accent/25 hover:bg-accent/25 w-full justify-between items-center h-8 px-2"
         >
-          <Search className="size-4 text-white mr-2" />
-          <span className="text-white text-xs">Search {data?.name}</span>
+          <div className="flex items-center">
+            <Search className="size-4 text-white mr-2" />
+            <span className="text-white text-xs">Search {data?.name}</span>
+          </div>
+          <kbd>
+            <span className="text-[10px] text-white">⌘</span>
+            <span className="text-[13px] text-white ml-1">S</span>
+          </kbd>
         </Button>
       </div>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder={`Search in ${data?.name}...`} />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Channels">
             {channels?.map((c) => (
               <CommandItem key={c._id} onSelect={() => onChannelClick(c._id)}>
-                {c.name}
+                # {c.name}
               </CommandItem>
             ))}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Members">
-            {members?.map((m) => (
-              <CommandItem key={m._id} onSelect={() => onMemberClick(m._id)}>
-                {m.user.name}
-              </CommandItem>
-            ))}
+            {members?.map((m) => {
+              const fallback = m.user.name?.[0].toUpperCase() ?? "M";
+              return (
+                <CommandItem key={m._id} onSelect={() => onMemberClick(m._id)}>
+                  <Avatar>
+                    <AvatarImage src={m.user.image} />
+                    <AvatarFallback>{fallback}</AvatarFallback>
+                  </Avatar>
+                  {m.user.name}
+                </CommandItem>
+              );
+            })}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
-      <div className="ml-auto flex-1 flex items-center justify-end">
-        <Button variant="transparent" size="iconSm">
-          <Info className="size-5 text-white" />
-        </Button>
+      <div className="flex items-center justify-end">
+        <UserButton
+          align="end"
+          data={data}
+          isAdmin={member?.role === "admin"}
+        />
       </div>
     </nav>
   );

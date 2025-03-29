@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
-  DialogTrigger,
-  DialogClose,
-  DialogFooter,
   DialogHeader,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import { Trash } from "lucide-react";
 import { useUpdateWorkSpace } from "@/hook/useUpdateWorkSpace";
 import { useDeleteWorkSpace } from "@/hook/useDeleteWorkSpace";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -40,7 +37,7 @@ const PreferenceModal = ({
     useDeleteWorkSpace();
   const [ConfirmDialog, confirm] = useConfirm(
     "Are You Sure?",
-    "This Action Is Irreversible"
+    "You are about to delete this workspace. This action cannot be undone."
   );
 
   const handleEdit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +46,8 @@ const PreferenceModal = ({
       { id: workspaceId, name: value },
       {
         onSuccess: () => {
-          toast.success("Workspace updated successfully");
           setEditOpen(false);
+          toast.success("Workspace updated successfully");
         },
         onError: () => {
           toast.error("Failed to update workspace");
@@ -60,16 +57,19 @@ const PreferenceModal = ({
   };
 
   const handleRemove = async () => {
+    setOpen(false);
     const ok = await confirm();
-    if (!ok) return;
+    if (!ok) {
+      setOpen(true);
+      return;
+    }
 
     deleteWorkSpace(
       { id: workspaceId },
       {
         onSuccess: () => {
-          toast.success("Workspace deleted successfully");
-          setOpen(false);
           router.replace("/");
+          toast.success("Workspace deleted successfully");
         },
         onError: () => {
           toast.error("Failed to delete workspace");
@@ -87,46 +87,49 @@ const PreferenceModal = ({
             <DialogTitle>{value}</DialogTitle>
           </DialogHeader>
           <div className="px-4 pb-4 flex flex-col gap-y-2">
-            <Dialog open={editOpen} onOpenChange={setEditOpen}>
-              <DialogTrigger asChild>
-                <div className="px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-semibold">Workspace name</p>
-                    <p className="text-sm text-[#1264a3] hover:underline font-semibold">
-                      Edit
-                    </p>
-                  </div>
-                  <p className="text-sm">{value}</p>
+            <div className="relative px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+              <div className="flex items-start justify-between gap-y-1.5 flex-col">
+                <div className="flex justify-between items-center gap-2 w-full">
+                  <p className="text-sm font-semibold">Workspace name</p>
+                  <p
+                    className="text-sm text-[#1264a3] hover:underline font-semibold"
+                    onClick={() => setEditOpen(true)}
+                  >
+                    Edit
+                  </p>
                 </div>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Rename Workspace</DialogTitle>
-                </DialogHeader>
-                <form className="space-y-4" onSubmit={handleEdit}>
-                  <Input
-                    value={value}
-                    disabled={isUpdatingWorkSpace}
-                    onChange={(e) => setValue(e.target.value)}
-                    required
-                    autoFocus
-                    maxLength={80}
-                    minLength={3}
-                    placeholder="Workspace name"
-                  />
-                  <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant="outline" disabled={isUpdatingWorkSpace}>
-                        Cancel
+                {editOpen ? (
+                  <form className="space-y-4 w-full" onSubmit={handleEdit}>
+                    <Input
+                      value={value}
+                      disabled={isUpdatingWorkSpace}
+                      onChange={(e) => setValue(e.target.value)}
+                      required
+                      autoFocus
+                      maxLength={80}
+                      minLength={3}
+                      placeholder="Workspace name"
+                    />
+                    <div className="flex justify-end gap-x-2">
+                      <div>
+                        <Button
+                          variant="outline"
+                          disabled={isUpdatingWorkSpace}
+                          onClick={() => setEditOpen(false)}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                      <Button disabled={isUpdatingWorkSpace} type="submit">
+                        Update
                       </Button>
-                    </DialogClose>
-                    <Button disabled={isUpdatingWorkSpace} type="submit">
-                      Save
-                    </Button>
-                  </DialogFooter>
-                </form>
-              </DialogContent>
-            </Dialog>
+                    </div>
+                  </form>
+                ) : (
+                  <p className="text-sm">{value}</p>
+                )}
+              </div>
+            </div>
             <button
               disabled={isDeletingWorkSpace}
               onClick={handleRemove}

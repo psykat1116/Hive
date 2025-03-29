@@ -1,26 +1,21 @@
 import { useCurrentMember } from "@/hook/useCurrentMember";
 import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
-import {
-  AlertTriangle,
-  HashIcon,
-  Loader,
-  MessageSquareText,
-  SendHorizonal,
-} from "lucide-react";
-import React from "react";
+import { AlertTriangle, HashIcon, Loader } from "lucide-react";
 import WorkSpaceHeader from "./WorkSpaceHeader";
-import SidebarItem from "../sidebar/SidebarItem";
+import SidebarItem from "@/components/sidebar/SidebarItem";
 import { useGetChannels } from "@/hook/useGetChannels";
 import WorkSpaceSection from "./WorkSpaceSection";
 import { useGetMembers } from "@/hook/useGetMembers";
-import UserItem from "../sidebar/UserItem";
+import UserItem from "@/components/sidebar/UserItem";
 import { useCreateChannelModal } from "@/store/useCreateChannelModal";
 import { useChannelId } from "@/hook/useChannelId";
 import { useMemberId } from "@/hook/useMemberId";
+import { usePathname } from "next/navigation";
 
 const WorkSpaceSidebar = () => {
   const memberId = useMemberId();
+  const pathname = usePathname();
   const channelId = useChannelId();
   const workspaceId = useWorkSpaceId();
   const [_open, setOpen] = useCreateChannelModal();
@@ -56,44 +51,39 @@ const WorkSpaceSidebar = () => {
 
   return (
     <div className="flex flex-col bg-[#5e2c5f] h-full">
-      <WorkSpaceHeader
-        workspace={workspace}
-        isAdmin={member.role === "admin"}
-      />
-      <div className="flex flex-col px-3 mt-3">
-        <SidebarItem label="Threads" icon={MessageSquareText} id="threads" />
-        <SidebarItem label="Drafts and Sent" icon={SendHorizonal} id="drafts" />
+      <div className="flex-1">
+        {pathname.includes("/channel") && (
+          <WorkSpaceSection
+            label="Channels"
+            hint="New Channel"
+            onNew={member.role === "admin" ? () => setOpen(true) : undefined}
+          >
+            {channels?.map((c) => (
+              <SidebarItem
+                key={c._id}
+                icon={HashIcon}
+                label={c.name}
+                id={c._id}
+                variant={channelId === c._id ? "active" : "default"}
+              />
+            ))}
+          </WorkSpaceSection>
+        )}
+        {pathname.includes("/member") && (
+          <WorkSpaceSection label="Direct Messages" hint="New Direct Messages">
+            {members?.map((item) => (
+              <UserItem
+                key={item._id}
+                id={item._id}
+                label={item.user.name}
+                image={item.user.image}
+                variant={item._id === memberId ? "active" : "default"}
+              />
+            ))}
+          </WorkSpaceSection>
+        )}
       </div>
-      <WorkSpaceSection
-        label="Channels"
-        hint="New Channel"
-        onNew={member.role === "admin" ? () => setOpen(true) : undefined}
-      >
-        {channels?.map((c) => (
-          <SidebarItem
-            key={c._id}
-            icon={HashIcon}
-            label={c.name}
-            id={c._id}
-            variant={channelId === c._id ? "active" : "default"}
-          />
-        ))}
-      </WorkSpaceSection>
-      <WorkSpaceSection
-        label="Direct Messages"
-        hint="New Direct Messages"
-        onNew={() => {}}
-      >
-        {members?.map((item) => (
-          <UserItem
-            key={item._id}
-            id={item._id}
-            label={item.user.name}
-            image={item.user.image}
-            variant={item._id === memberId ? "active" : "default"}
-          />
-        ))}
-      </WorkSpaceSection>
+      <WorkSpaceHeader workspace={workspace} />
     </div>
   );
 };

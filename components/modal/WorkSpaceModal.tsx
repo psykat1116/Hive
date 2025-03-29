@@ -4,14 +4,15 @@ import {
   DialogTitle,
   DialogHeader,
   DialogContent,
-} from "../ui/dialog";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import Image from "next/image";
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useCreateWorkSpace } from "@/hook/useCreateWorkSpace";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Header from "@/components/Header";
 
 const WorkSpaceModal = () => {
   const router = useRouter();
@@ -45,15 +46,8 @@ const WorkSpaceModal = () => {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="flex flex-col max-sm:items-center">
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              height={40}
-              width={40}
-              className="mb-2"
-            />
-            Create a workspace
+          <DialogTitle className="flex flex-col max-sm:items-center w-full relative">
+            <Header description="Create a workspace" />
           </DialogTitle>
         </DialogHeader>
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -67,7 +61,10 @@ const WorkSpaceModal = () => {
             placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'"
             onChange={(e) => setName(e.target.value)}
           />
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
+            <DialogClose asChild>
+              <Button variant="outline">Close</Button>
+            </DialogClose>
             <Button disabled={isPending} type="submit">
               Create
             </Button>

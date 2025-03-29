@@ -4,15 +4,16 @@ import {
   DialogTitle,
   DialogHeader,
   DialogContent,
-} from "../ui/dialog";
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useCreateChannel } from "@/hook/useCreateChannel";
 import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import Header from "../Header";
 
 const ChannelModal = () => {
   const workspaceId = useWorkSpaceId();
@@ -53,14 +54,7 @@ const ChannelModal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col max-sm:items-center">
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              height={40}
-              width={40}
-              className="mb-2"
-            />
-            Create a Channel
+            <Header description="Create a channel" />
           </DialogTitle>
         </DialogHeader>
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -74,7 +68,10 @@ const ChannelModal = () => {
             placeholder="Channel name e.g. 'plan-budget'"
             onChange={(e) => handleChange(e)}
           />
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
+            <DialogClose asChild>
+              <Button variant="outline">Close</Button>
+            </DialogClose>
             <Button disabled={isPending} type="submit">
               Create
             </Button>

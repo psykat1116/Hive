@@ -1,105 +1,89 @@
-import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Doc } from "@/convex/_generated/dataModel";
+import { ChevronUpIcon, Plus } from "lucide-react";
 import {
-  ChevronDownIcon,
-  ListFilter,
-  Settings,
-  SquarePen,
-  UserPlus,
-} from "lucide-react";
-import Hint from "@/components/Hint";
-import PreferenceModal from "@/components/modal/PreferenceModal";
-import InviteModal from "../modal/InviteModal";
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
+import { useGetWorkSpaces } from "@/hook/useGetWorkSpaces";
 
 interface WorkSpaceHeaderProps {
   workspace: Doc<"workspaces">;
-  isAdmin: boolean;
 }
 
-const WorkSpaceHeader = ({ workspace, isAdmin }: WorkSpaceHeaderProps) => {
-  const [preferenceOpen, setPreferenceOpen] = useState(false);
-  const [inviteOpen, setInviteOpen] = useState(false);
+const WorkSpaceHeader = ({ workspace }: WorkSpaceHeaderProps) => {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const { data: workspaces } = useGetWorkSpaces();
+  const [_open, setOpen] = useCreateWorkSpaceModal();
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "s" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   return (
-    <>
-      <PreferenceModal
-        open={preferenceOpen}
-        setOpen={setPreferenceOpen}
-        initialValue={workspace.name}
-      />
-      <InviteModal
-        open={inviteOpen}
-        setInviteOpen={setInviteOpen}
-        name={workspace.name}
-        code={workspace.joinCode}
-      />
-      <div className="flex items-center justify-between px-2 h-[49px] gap-0.5">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="transparent"
-              className="font-semibold text-lg w-auto p-1 overflow-hidden"
+    <div className="flex items-center justify-between px-2 h-[49px] gap-0.5">
+      <Button
+        onClick={() => setIsOpen(true)}
+        variant="transparent"
+        className="font-semibold text-lg w-auto max-w-[20rem] p-1 overflow-hidden justify-between rounded-sm"
+      >
+        <span className="truncate">{workspace.name}</span>
+        <ChevronUpIcon className="size-4 shrink-0 ml-2" />
+      </Button>
+      <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
+        <CommandInput placeholder="Search..." />
+        <CommandList>
+          <CommandEmpty>No Workspace found.</CommandEmpty>
+          <CommandGroup heading="Workspace">
+            {workspaces?.map((w) => {
+              return (
+                <CommandItem
+                  key={w._id}
+                  onSelect={() => router.push(`/workspace/${w._id}`)}
+                  disabled={w._id === workspace._id}
+                >
+                  <div className="size-7 relative overflow-hidden bg-[#616061] text-white font-semibold text-md rounded-md flex items-center justify-center">
+                    {w.name[0].toUpperCase()}
+                  </div>
+                  <p className="truncate">{w.name}</p>
+                </CommandItem>
+              );
+            })}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Actions">
+            <CommandItem
+              onSelect={() => {
+                setOpen(true);
+                setIsOpen(false);
+              }}
             >
-              <span className="truncate">{workspace.name}</span>
-              <ChevronDownIcon className="size-4 shrink-0" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent side="bottom" align="start" className="w-54">
-            <DropdownMenuItem className="cursor-pointer capitalize flex items-center justify-between">
-              <div className="size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md flex items-center justify-center">
-                {workspace.name[0].toUpperCase()}
+              <div className="size-9 relative overflow-hidden  bg-[#F2F2F2] text-slate-800 font-semibold text-xl rounded-md flex items-center justify-center mr-2">
+                <Plus />
               </div>
-              <div className="flex flex-col items-end">
-                <p className="font-bold">{workspace.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  Active Workspace
-                </p>
-              </div>
-            </DropdownMenuItem>
-            {isAdmin && (
-              <>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer py-2 flex justify-between items-center"
-                  onClick={() => setInviteOpen(true)}
-                >
-                  <UserPlus className="size-4" />
-                  <span className="text-muted-foreground">Invite</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer py-2 flex justify-between items-center"
-                  onClick={() => setPreferenceOpen(true)}
-                >
-                  <Settings className="size-4" />
-                  <span className="text-muted-foreground">Settings</span>
-                </DropdownMenuItem>
-              </>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <div className="flex items-center gap-0.5">
-          <Hint label="New Message" side="bottom">
-            <Button variant="transparent" size="iconSm">
-              <SquarePen className="size-4" />
-            </Button>
-          </Hint>
-          <Hint label="Filter Messages" side="bottom">
-            <Button variant="transparent" size="iconSm">
-              <ListFilter className="size-4" />
-            </Button>
-          </Hint>
-        </div>
-      </div>
-    </>
+              Create a new workspace
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </div>
   );
 };
 

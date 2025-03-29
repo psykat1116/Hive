@@ -1,12 +1,14 @@
 "use client";
-import { useCurrentMember } from "@/hook/useCurrentMember";
-import { useGetChannels } from "@/hook/useGetChannels";
-import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
-import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
-import { useCreateChannelModal } from "@/store/useCreateChannelModal";
-import { AlertTriangle, Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { AlertTriangle, Loader } from "lucide-react";
+import { useGetChannels } from "@/hook/useGetChannels";
+import { useWorkSpaceId } from "@/hook/useWorkSpaceId";
+import { useGetWorkSpace } from "@/hook/useGetWorkSpace";
+import { useCurrentMember } from "@/hook/useCurrentMember";
+import { useCreateChannelModal } from "@/store/useCreateChannelModal";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 
 const WorkSpaceIdPage = () => {
   const router = useRouter();
@@ -45,36 +47,25 @@ const WorkSpaceIdPage = () => {
       setOpen(true);
     }
   }, [
+    open,
+    router,
+    member,
+    isAdmin,
+    setOpen,
     channelId,
     workspace,
+    workspaceId,
+    memberLoading,
     workspaceLoading,
     channelsLoading,
-    open,
-    setOpen,
-    router,
-    workspaceId,
-    member,
-    memberLoading,
-    isAdmin,
   ]);
 
   if (workspaceLoading || channelsLoading || memberLoading) {
-    return (
-      <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
-        <Loader className="size-6 animate-spin text-muted-foreground" />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!workspace || !member) {
-    return (
-      <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
-        <AlertTriangle className="size-6 text-muted-foreground" />
-        <span className="text-sm text-muted-foreground">
-          Workspace Not Found
-        </span>
-      </div>
-    );
+    return <Error content="Workspace not found" />;
   }
 
   return (

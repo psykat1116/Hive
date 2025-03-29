@@ -1,10 +1,6 @@
-import React from "react";
-import { Button } from "../ui/button";
-import { FaCaretDown } from "react-icons/fa";
-import Hint from "../Hint";
+import Hint from "@/components/Hint";
 import { PlusIcon } from "lucide-react";
-import { useToggle } from "react-use";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface WorkSpaceSectionProps {
   children: React.ReactNode;
@@ -19,23 +15,13 @@ const WorkSpaceSection = ({
   hint,
   onNew,
 }: WorkSpaceSectionProps) => {
-  const [on, toggle] = useToggle(false);
   return (
-    <div className="flex px-3 flex-col mt-3">
-      <div className="flex items-center group">
-        <Button
-          variant="transparent"
-          className="text-sm text-[#f9edfc] p-0 size-6"
-          onClick={toggle}
-        >
-          <FaCaretDown
-            className={cn("size-4 transition-transform", !on && "-rotate-90")}
-          />
-        </Button>
+    <div className="flex px-2 flex-col mt-1">
+      <div className="flex items-center group mb-1">
         <Button
           variant="transparent"
           size="sm"
-          className="group p-1.5 h-[28px] justify-start overflow-hidden text-sm text-[#f9edfc]"
+          className="group p-1.5 h-[28px] justify-start overflow-hidden text-sm text-[#f9edfc] hover:bg-none"
         >
           <span className="truncate">{label}</span>
         </Button>
@@ -52,7 +38,7 @@ const WorkSpaceSection = ({
           </Hint>
         )}
       </div>
-      {on && children}
+      {children}
     </div>
   );
 };

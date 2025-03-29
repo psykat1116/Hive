@@ -59,7 +59,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
   };
 
   return (
-    <Card className="w-full h-full p-6">
+    <Card className="w-full h-full p-6 shadow-[1px_1px_10px_rgba(0,0,0,0.5)]">
       <CardHeader className="px-0 py-0 flex items-center gap-2">
         <Image
           src="/logo.svg"
@@ -68,10 +68,10 @@ const SignInCard = ({ setState }: SignInCardProps) => {
           width={40}
           className="mb-2"
         />
-        <div className="-mt-2">
-          <CardTitle className="text-xl">Sign In</CardTitle>
-          <CardDescription className="text-xs">
-            Login to your Hive account
+        <div className="-mt-1">
+          <CardTitle className="text-md">Login</CardTitle>
+          <CardDescription className="text-[11px] mb-1">
+            Continue with your Hive account
           </CardDescription>
         </div>
       </CardHeader>

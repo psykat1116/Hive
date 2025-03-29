@@ -175,3 +175,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #dcdcdc #f8f8f8;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}

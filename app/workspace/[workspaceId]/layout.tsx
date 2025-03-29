@@ -24,12 +24,13 @@ const WorkSpaceIdLayout = ({ children }: WorkSpaceIdLayoutProps) => {
   return (
     <div className="h-full">
       <ToolBar />
-      <div className="flex h-[calc(100vh-40px)]">
+      <div className="flex h-[calc(100vh-52px)]">
         <Sidebar />
         <ResizablePanelGroup direction="horizontal" autoSaveId="hive-workspace">
           <ResizablePanel
             defaultSize={20}
-            minSize={11}
+            minSize={15}
+            maxSize={25}
             className="bg-[#5e2c5f]"
           >
             <WorkSpaceSidebar />
