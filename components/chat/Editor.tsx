@@ -167,7 +167,7 @@ const Editor = ({
       />
       <div
         className={cn(
-          "flex flex-col border border-slate-200 rounded-md overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition bg-white",
+          "flex flex-col border border-slate-200 rounded-md overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition bg-white mb-2",
           disabled && "opacity-50"
         )}
       >
@@ -271,19 +271,19 @@ const Editor = ({
             </Button>
           )}
         </div>
+        {variant === "create" && (
+          <div
+            className={cn(
+              "px-2 pb-1 text-[10px] text-muted-foreground flex justify-end opacity-0 transition",
+              !isEmpty && "opacity-100"
+            )}
+          >
+            <kbd>
+              <strong>Shift + Enter</strong> To Send
+            </kbd>
+          </div>
+        )}
       </div>
-      {variant === "create" && (
-        <div
-          className={cn(
-            "p-2 text-[10px] text-muted-foreground flex justify-end opacity-0 transition",
-            !isEmpty && "opacity-100"
-          )}
-        >
-          <kbd>
-            <strong>Shift + Enter</strong> To Send
-          </kbd>
-        </div>
-      )}
     </div>
   );
 };

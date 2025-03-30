@@ -1,16 +1,17 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { useGetWorkSpaceInfo } from "@/hook/workspace/useGetWorkSpaceInfo";
-import { useJoin } from "@/hook/workspace/useJoin";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import Link from "next/link";
+import { toast } from "sonner";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import React, { useEffect, useMemo } from "react";
+import { useJoin } from "@/hook/workspace/useJoin";
 import VerificationInput from "react-verification-input";
-import { toast } from "sonner";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetWorkSpaceInfo } from "@/hook/workspace/useGetWorkSpaceInfo";
+import Loading from "@/components/Loading";
 
 const JoinPage = () => {
   const router = useRouter();
@@ -41,11 +42,7 @@ const JoinPage = () => {
   }, [isMember, router, workspaceId]);
 
   if (isLoading) {
-    return (
-      <div className="h-full flex items-center justify-center">
-        <Loader className="animate-spin size-6 text-muted-foreground" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

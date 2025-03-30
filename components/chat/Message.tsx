@@ -70,6 +70,7 @@ const Message = ({
   threadTimestamp,
 }: MessageProps) => {
   const { onClose, onOpenMessage, onOpenProfile, parentMessageId } = usePanel();
+
   const { mutate: updateMessage, isPending: isUpdatingMessage } =
     useUpdateMessage();
   const { mutate: deleteMessage, isPending: isDeletingMessage } =
@@ -147,9 +148,9 @@ const Message = ({
               "bg-rose-500/50 transform transition-all scale-y-0 origin-bottom duration-200"
           )}
         >
-          <div className="flex items-start gap-2.5">
+          <div className="flex items-start gap-3.5">
             <Hint label={formatFullTime(new Date(createdAt))}>
-              <button className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 w-[30px] text-center hover:underline mt-3">
+              <button className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 w-[35px] text-center hover:underline mt-3">
                 {format(new Date(createdAt), "hh:mm")}
               </button>
             </Hint>
@@ -214,7 +215,7 @@ const Message = ({
       >
         <div className="flex items-start gap-2">
           <button onClick={() => onOpenProfile(memberId)}>
-            <Avatar>
+            <Avatar className="size-10">
               <AvatarImage src={authorImage} />
               <AvatarFallback>{fallBack}</AvatarFallback>
             </Avatar>
@@ -233,7 +234,7 @@ const Message = ({
             <div className="flex flex-col w-full overflow-hidden">
               <div className="text-sm">
                 <button
-                  className="font-bold text-primary hover:underline"
+                  className="font-bold text-primary hover:underline cursor-pointer"
                   onClick={() => onOpenProfile(memberId)}
                 >
                   {authorName}

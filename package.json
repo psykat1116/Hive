@@ -25,7 +25,6 @@
     "convex": "^1.21.0",
     "date-fns": "^4.1.0",
     "emoji-picker-react": "^4.12.2",
-    "jotai": "^2.12.2",
     "lightningcss": "^1.29.3",
     "lucide-react": "^0.483.0",
     "next": "15.2.4",
@@ -40,7 +39,8 @@
     "react-verification-input": "^4.2.2",
     "sonner": "^2.0.2",
     "tailwind-merge": "^3.0.2",
-    "tw-animate-css": "^1.2.5"
+    "tw-animate-css": "^1.2.5",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

@@ -17,11 +17,11 @@ import Header from "@/components/Header";
 const WorkSpaceModal = () => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [open, setOpen] = useCreateWorkSpaceModal();
+  const { isOpen, closeModal } = useCreateWorkSpaceModal();
   const { mutate, isPending } = useCreateWorkSpace();
 
   const handleClose = () => {
-    setOpen(false);
+    closeModal();
     setName("");
   };
 
@@ -43,7 +43,7 @@ const WorkSpaceModal = () => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col max-sm:items-center w-full relative">

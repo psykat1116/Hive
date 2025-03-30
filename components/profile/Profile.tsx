@@ -2,7 +2,14 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useCurrentMember } from "@/hook/member/useCurrentMember";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, ChevronDown, Loader, Mail, X } from "lucide-react";
+import {
+  AlertTriangle,
+  ChevronDown,
+  Loader,
+  Mail,
+  User,
+  X,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
@@ -147,14 +154,14 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
       <RemoveDialog />
       <LeaveDialog />
       <UpdateDialog />
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col gap-y-2">
         <div className="flex justify-between items-center px-4 h-[49px] border-b">
           <p className="text-lg font-bold">Profile</p>
           <Button onClick={onClose} size="iconSm" variant="ghost">
             <X className="size-5 stroke-[1.5]" />
           </Button>
         </div>
-        <div className="flex flex-col justify-center items-center p-4">
+        <div className="flex flex-col justify-center items-center px-4">
           <Avatar className="max-w-[256px] max-h-[256px] size-full">
             <AvatarImage src={member.user.image} />
             <AvatarFallback className="aspect-square text-5xl">
@@ -162,17 +169,16 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
             </AvatarFallback>
           </Avatar>
         </div>
-        <div className="flex flex-col p-4">
-          <p className="text-xl font-bold">{member.user.name}</p>
+        <div className="flex flex-col px-4 items-center">
           {currentMember?.role === "admin" &&
             (currentMember?._id !== memberId ? (
-              <div className="flex items-center gap-2 mt-4">
+              <div className="flex w-full flex-col items-center gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       disabled={isUpdatingMember}
                       variant="ghost"
-                      className="w-full capitalize"
+                      className="w-full capitalize bg-muted"
                     >
                       {member.role} <ChevronDown className="size-4 ml-2" />
                     </Button>
@@ -220,7 +226,23 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
         <div className="flex flex-col p-4">
           <p className="text-sm font-bold mb-4">Contact Information</p>
           <div className="flex items-center gap-2">
-            <div className="size-9 rounded-md bg-muted flex items-center justify-center">
+            <div className="size-10 rounded-md bg-muted flex items-center justify-center">
+              <User className="size-4" />
+            </div>
+            <div className="flex flex-col">
+              <p className="text-[13px] font-semibold text-muted-foreground">
+                Name
+              </p>
+              <Link
+                href={`mailto:${member.user.email}`}
+                className="text-sm hover:underline text-[#1264a3]"
+              >
+                {member.user.name}
+              </Link>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <div className="size-10 rounded-md bg-muted flex items-center justify-center">
               <Mail className="size-4" />
             </div>
             <div className="flex flex-col">

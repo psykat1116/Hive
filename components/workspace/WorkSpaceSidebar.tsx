@@ -18,7 +18,7 @@ const WorkSpaceSidebar = () => {
   const pathname = usePathname();
   const channelId = useChannelId();
   const workspaceId = useWorkSpaceId();
-  const [_open, setOpen] = useCreateChannelModal();
+  const { openModal } = useCreateChannelModal();
   const { data: member, isLoading: memberLoading } = useCurrentMember({
     workspaceId,
   });
@@ -56,7 +56,7 @@ const WorkSpaceSidebar = () => {
           <WorkSpaceSection
             label="Channels"
             hint="New Channel"
-            onNew={member.role === "admin" ? () => setOpen(true) : undefined}
+            onNew={member.role === "admin" ? openModal : undefined}
           >
             {channels?.map((c) => (
               <SidebarItem

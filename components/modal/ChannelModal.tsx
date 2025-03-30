@@ -19,7 +19,7 @@ const ChannelModal = () => {
   const workspaceId = useWorkSpaceId();
   const router = useRouter();
   const [name, setName] = useState("");
-  const [open, setOpen] = useCreateChannelModal();
+  const {isOpen, closeModal} = useCreateChannelModal();
   const { mutate, isPending } = useCreateChannel();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ const ChannelModal = () => {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    closeModal();
     setName("");
   };
 
@@ -50,7 +50,7 @@ const ChannelModal = () => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col max-sm:items-center">

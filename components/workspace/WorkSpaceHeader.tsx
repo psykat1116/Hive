@@ -23,7 +23,7 @@ const WorkSpaceHeader = ({ workspace }: WorkSpaceHeaderProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { data: workspaces } = useGetWorkSpaces();
-  const [_open, setOpen] = useCreateWorkSpaceModal();
+  const { openModal } = useCreateWorkSpaceModal();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -71,7 +71,7 @@ const WorkSpaceHeader = ({ workspace }: WorkSpaceHeaderProps) => {
           <CommandGroup heading="Actions">
             <CommandItem
               onSelect={() => {
-                setOpen(true);
+                openModal();
                 setIsOpen(false);
               }}
             >

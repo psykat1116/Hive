@@ -1,17 +1,17 @@
 "use client";
-import Sidebar from "@/components/sidebar/Sidebar";
-import ToolBar from "@/components/toolbar/ToolBar";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import WorkSpaceSidebar from "@/components/workspace/WorkSpaceSidebar";
-import { usePanel } from "@/hook/usePanel";
 import { Loader } from "lucide-react";
-import { Id } from "@/convex/_generated/dataModel";
+import { usePanel } from "@/hook/usePanel";
 import Thread from "@/components/thread/Thread";
+import ToolBar from "@/components/toolbar/ToolBar";
+import Sidebar from "@/components/sidebar/Sidebar";
+import { Id } from "@/convex/_generated/dataModel";
 import Profile from "@/components/profile/Profile";
+import WorkSpaceSidebar from "@/components/workspace/WorkSpaceSidebar";
 
 interface WorkSpaceIdLayoutProps {
   children: React.ReactNode;
@@ -42,7 +42,7 @@ const WorkSpaceIdLayout = ({ children }: WorkSpaceIdLayoutProps) => {
           {showPanel && (
             <>
               <ResizableHandle withHandle />
-              <ResizablePanel minSize={20} defaultSize={29}>
+              <ResizablePanel minSize={20} defaultSize={20} maxSize={25}>
                 {parentMessageId ? (
                   <Thread
                     messageId={parentMessageId as Id<"messages">}

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { AlertTriangle, Loader } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { useGetChannels } from "@/hook/channel/useGetChannels";
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
@@ -13,7 +13,7 @@ import Loading from "@/components/Loading";
 const WorkSpaceIdPage = () => {
   const router = useRouter();
   const workspaceId = useWorkSpaceId();
-  const [open, setOpen] = useCreateChannelModal();
+  const { isOpen, openModal } = useCreateChannelModal();
 
   const { data: member, isLoading: memberLoading } = useCurrentMember({
     workspaceId,
@@ -43,15 +43,15 @@ const WorkSpaceIdPage = () => {
       return;
     if (channelId) {
       router.push(`/workspace/${workspaceId}/channel/${channelId}`);
-    } else if (!open && isAdmin) {
-      setOpen(true);
+    } else if (!isOpen && isAdmin) {
+      openModal();
     }
   }, [
-    open,
+    isOpen,
     router,
     member,
     isAdmin,
-    setOpen,
+    openModal,
     channelId,
     workspace,
     workspaceId,

@@ -41,7 +41,9 @@ const Renderer = ({ value }: RendererProps) => {
     return null;
   }
 
-  return <div ref={rendererRef} className="ql-editor ql-renderer -ml-3" />;
+  return (
+    <div ref={rendererRef} className="ql-editor ql-renderer -ml-3 -mt-1.5" />
+  );
 };
 
 export default Renderer;

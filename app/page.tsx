@@ -10,7 +10,7 @@ import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
 const Home = () => {
   const router = useRouter();
   const { data, isLoading } = useGetWorkSpaces();
-  const [open, setOpen] = useCreateWorkSpaceModal();
+  const { isOpen, openModal } = useCreateWorkSpaceModal();
 
   const workspaceId = useMemo(() => {
     return data?.[0]?._id;
@@ -20,10 +20,10 @@ const Home = () => {
     if (isLoading) return;
     if (workspaceId) {
       router.replace(`/workspace/${workspaceId}`);
-    } else if (!open) {
-      setOpen(true);
+    } else if (!isOpen) {
+      openModal();
     }
-  }, [workspaceId, isLoading, open, setOpen, router]);
+  }, [workspaceId, isLoading, isOpen, openModal, router]);
 
   return (
     <div className="flex items-center flex-col justify-center h-full bg-gradient-to-br from-rose-300 to-pink-200 shadow-[8px_8px_16px_rgba(0,0,0,0.2),-8px_-8px_16px_rgba(255,255,255,0.5)]">
