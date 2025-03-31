@@ -1,5 +1,4 @@
 import { AlertTriangle } from "lucide-react";
-import React from "react";
 
 interface ErrorProps {
   content: string;

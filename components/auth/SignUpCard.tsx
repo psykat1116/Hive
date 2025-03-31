@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import { toast } from "sonner";
+import Image from "next/image";
+import { useState } from "react";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { TriangleAlert } from "lucide-react";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+} from "@/components/ui/card";
 import { SignInFlow } from "@/type";
-import Image from "next/image";
-import { TriangleAlert } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { toast } from "sonner";
 
 interface SignUpCardProps {
   setState: (state: SignInFlow) => void;

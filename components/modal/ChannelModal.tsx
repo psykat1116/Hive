@@ -1,4 +1,7 @@
-import { useCreateChannelModal } from "@/store/useCreateChannelModal";
+import { toast } from "sonner";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   Dialog,
   DialogTitle,
@@ -6,14 +9,13 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useCreateChannel } from "@/hook/channel/useCreateChannel";
+import Header from "@/components/Header";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import Header from "../Header";
+import { useCreateChannel } from "@/hook/channel/useCreateChannel";
+import { useCreateChannelModal } from "@/store/useCreateChannelModal";
 
 const ChannelModal = () => {
   const workspaceId = useWorkSpaceId();

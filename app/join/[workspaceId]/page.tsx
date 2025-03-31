@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
-import { toast } from "sonner";
 import Image from "next/image";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import React, { useEffect, useMemo } from "react";
-import { useJoin } from "@/hook/workspace/useJoin";
 import VerificationInput from "react-verification-input";
+
+import Loading from "@/components/Loading";
+import { Button } from "@/components/ui/button";
+import { useJoin } from "@/hook/workspace/useJoin";
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { useGetWorkSpaceInfo } from "@/hook/workspace/useGetWorkSpaceInfo";
-import Loading from "@/components/Loading";
 
 const JoinPage = () => {
   const router = useRouter();

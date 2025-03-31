@@ -1,20 +1,22 @@
-import { Id } from "@/convex/_generated/dataModel";
-import React, { useRef, useState } from "react";
-import { Button } from "../ui/button";
-import { AlertTriangle, Loader, X } from "lucide-react";
-import { useGetMessage } from "@/hook/message/useGetMessage";
-import Message from "../chat/Message";
-import { useCurrentMember } from "@/hook/member/useCurrentMember";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import dynamic from "next/dynamic";
 import Quill from "quill";
-import { useUpload } from "@/hook/useUpload";
-import { useCreateMessage } from "@/hook/message/useCreateMessage";
-import { useChannelId } from "@/hook/params/useChannelId";
 import { toast } from "sonner";
-import { useGetMessages } from "@/hook/message/useGetMessages";
+import dynamic from "next/dynamic";
+import React, { useRef, useState } from "react";
+import { Id } from "@/convex/_generated/dataModel";
+import { AlertTriangle, Loader, X } from "lucide-react";
 import { differenceInMinutes, format, isToday, isYesterday } from "date-fns";
+
 import { TIME_THRESHOLD } from "@/type";
+import Message from "@/components/chat/Message";
+import { Button } from "@/components/ui/button";
+
+import { useUpload } from "@/hook/useUpload";
+import { useChannelId } from "@/hook/params/useChannelId";
+import { useGetMessage } from "@/hook/message/useGetMessage";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetMessages } from "@/hook/message/useGetMessages";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
+import { useCreateMessage } from "@/hook/message/useCreateMessage";
 
 interface ThreadProps {
   messageId: Id<"messages">;

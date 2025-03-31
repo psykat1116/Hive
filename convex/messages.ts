@@ -1,8 +1,9 @@
-import { getAuthUserId } from "@convex-dev/auth/server";
-import { mutation, query, QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
-import { Doc, Id } from "./_generated/dataModel";
+import { getAuthUserId } from "@convex-dev/auth/server";
 import { paginationOptsValidator } from "convex/server";
+
+import { Doc, Id } from "./_generated/dataModel";
+import { mutation, query, QueryCtx } from "./_generated/server";
 
 const getMember = async (
   ctx: QueryCtx,

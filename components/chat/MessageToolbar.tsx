@@ -1,8 +1,8 @@
-import React from "react";
-import { Button } from "../ui/button";
 import { MessageSquareText, Pencil, Smile, Trash } from "lucide-react";
-import Hint from "../Hint";
-import EmojiPopover from "./EmojiPopover";
+
+import Hint from "@/components/Hint";
+import { Button } from "@/components/ui/button";
+import EmojiPopover from "@/components/chat/EmojiPopover";
 
 interface MessageToolbarProps {
   isAuthor: boolean;

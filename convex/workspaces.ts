@@ -1,8 +1,9 @@
-import { getAuthUserId } from "@convex-dev/auth/server";
-import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { getAuthUserId } from "@convex-dev/auth/server";
 
 import { generateCode } from "../lib/invite";
+import { mutation, query } from "./_generated/server";
+
 
 export const get = query({
   args: {},

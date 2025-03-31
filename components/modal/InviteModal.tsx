@@ -1,4 +1,6 @@
-import React from "react";
+import { toast } from "sonner";
+import { Copy, RefreshCcw } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -6,13 +8,12 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
-import { Copy, RefreshCcw } from "lucide-react";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import { toast } from "sonner";
-import { useUpdateCode } from "@/hook/workspace/useUpdateCode";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+
 import { useConfirm } from "@/hook/useConfirm";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useUpdateCode } from "@/hook/workspace/useUpdateCode";
 
 interface InviteModalProps {
   open: boolean;

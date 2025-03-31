@@ -1,17 +1,20 @@
+import { usePathname } from "next/navigation";
+import { AlertTriangle, HashIcon, Loader } from "lucide-react";
+
+import UserItem from "@/components/sidebar/UserItem";
+import SidebarItem from "@/components/sidebar/SidebarItem";
+import WorkSpaceHeader from "@/components/workspace/WorkSpaceHeader";
+import WorkSpaceSection from "@/components/workspace/WorkSpaceSection";
+
+import { useCreateChannelModal } from "@/store/useCreateChannelModal";
+
+import { useMemberId } from "@/hook/params/useMemberId";
+import { useChannelId } from "@/hook/params/useChannelId";
+import { useGetMembers } from "@/hook/member/useGetMembers";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetChannels } from "@/hook/channel/useGetChannels";
 import { useCurrentMember } from "@/hook/member/useCurrentMember";
 import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import { AlertTriangle, HashIcon, Loader } from "lucide-react";
-import WorkSpaceHeader from "./WorkSpaceHeader";
-import SidebarItem from "@/components/sidebar/SidebarItem";
-import { useGetChannels } from "@/hook/channel/useGetChannels";
-import WorkSpaceSection from "./WorkSpaceSection";
-import { useGetMembers } from "@/hook/member/useGetMembers";
-import UserItem from "@/components/sidebar/UserItem";
-import { useCreateChannelModal } from "@/store/useCreateChannelModal";
-import { useChannelId } from "@/hook/params/useChannelId";
-import { useMemberId } from "@/hook/params/useMemberId";
-import { usePathname } from "next/navigation";
 
 const WorkSpaceSidebar = () => {
   const memberId = useMemberId();

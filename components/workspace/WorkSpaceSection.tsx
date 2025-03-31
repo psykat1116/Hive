@@ -1,5 +1,6 @@
-import Hint from "@/components/Hint";
 import { PlusIcon } from "lucide-react";
+
+import Hint from "@/components/Hint";
 import { Button } from "@/components/ui/button";
 
 interface WorkSpaceSectionProps {

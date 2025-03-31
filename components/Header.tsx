@@ -2,11 +2,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
-  title?: string;
-  description?: string;
   size?: number;
+  title?: string;
   Tclass?: string;
   Dclass?: string;
+  description?: string;
 }
 
 const Header = ({

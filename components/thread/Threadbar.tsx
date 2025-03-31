@@ -1,7 +1,7 @@
-import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { formatDistanceToNow } from "date-fns";
 import { ChevronRight } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ThreadbarProps {
   count?: number;

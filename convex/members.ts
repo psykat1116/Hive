@@ -1,7 +1,8 @@
-import { getAuthUserId } from "@convex-dev/auth/server";
-import { query, mutation, QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
+import { getAuthUserId } from "@convex-dev/auth/server";
+
 import { Doc, Id } from "./_generated/dataModel";
+import { query, mutation, QueryCtx } from "./_generated/server";
 
 const populateUser = async (ctx: QueryCtx, id: Id<"users">) => {
   return await ctx.db.get(id);

@@ -4,22 +4,22 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "@/components/ui/tooltip";
 
 interface HintProps {
   label: string;
-  children: React.ReactNode;
-  side?: "top" | "bottom" | "left" | "right";
-  align?: "start" | "center" | "end";
   sideOffset?: number;
   alignOffset?: number;
+  children: React.ReactNode;
+  align?: "start" | "center" | "end";
+  side?: "top" | "bottom" | "left" | "right";
 }
 
 const Hint = ({
-  label,
-  children,
   side,
+  label,
   align,
+  children,
   sideOffset,
   alignOffset,
 }: HintProps) => {

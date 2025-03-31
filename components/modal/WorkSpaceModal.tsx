@@ -1,4 +1,7 @@
-import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
+import { toast } from "sonner";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   Dialog,
   DialogTitle,
@@ -6,13 +9,12 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
+import Header from "@/components/Header";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 import { useCreateWorkSpace } from "@/hook/workspace/useCreateWorkSpace";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import Header from "@/components/Header";
+import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
 
 const WorkSpaceModal = () => {
   const router = useRouter();

@@ -1,11 +1,13 @@
-import { Doc, Id } from "@/convex/_generated/dataModel";
-import { useCurrentMember } from "@/hook/member/useCurrentMember";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import { cn } from "@/lib/utils";
-import React from "react";
-import Hint from "../Hint";
-import EmojiPopover from "./EmojiPopover";
 import { MdOutlineAddReaction } from "react-icons/md";
+
+import { cn } from "@/lib/utils";
+import { Doc, Id } from "@/convex/_generated/dataModel";
+
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
+
+import Hint from "@/components/Hint";
+import EmojiPopover from "@/components/chat/EmojiPopover";
 
 interface ReactionsProps {
   data: Array<

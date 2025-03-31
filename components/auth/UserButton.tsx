@@ -1,6 +1,8 @@
 "use client";
-import { useCurrentUser } from "@/hook/useCurrentUser";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useState } from "react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { Loader, LogOut, Settings, UserPlus } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,12 +10,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Loader, LogOut, Settings, UserPlus } from "lucide-react";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { useState } from "react";
+import InviteModal from "@/components/modal/InviteModal";
+import PreferenceModal from "@/components/modal/PreferenceModal";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { Doc } from "@/convex/_generated/dataModel";
-import PreferenceModal from "../modal/PreferenceModal";
-import InviteModal from "../modal/InviteModal";
+import { useCurrentUser } from "@/hook/useCurrentUser";
 
 interface UserButtonProps {
   align?: "end" | "start" | "center";

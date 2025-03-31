@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { LucideIcon } from "lucide-react";
 import { IconType } from "react-icons/lib";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 
 const sidebarItemVariants = cva(
   "flex items-center justify-start h-7 text-sm overflow-hidden rounded-sm",

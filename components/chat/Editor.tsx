@@ -1,16 +1,17 @@
-import { RefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Quill, { QuillOptions } from "quill";
+import Image from "next/image";
 import { Delta, Op } from "quill/core";
-import { Button } from "@/components/ui/button";
-import { PiTextAa } from "react-icons/pi";
-import { ImageIcon, Smile, X } from "lucide-react";
 import { MdSend } from "react-icons/md";
-import Hint from "@/components/Hint";
+import { PiTextAa } from "react-icons/pi";
+import Quill, { QuillOptions } from "quill";
+import { ImageIcon, Smile, X } from "lucide-react";
+import { RefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
+
 import { cn } from "@/lib/utils";
+import Hint from "@/components/Hint";
+import { Button } from "@/components/ui/button";
+import EmojiPopover from "@/components/chat/EmojiPopover";
 
 import "quill/dist/quill.snow.css";
-import EmojiPopover from "./EmojiPopover";
-import Image from "next/image";
 
 type EditorValue = {
   image: File | null;
@@ -251,38 +252,28 @@ const Editor = ({
             </div>
           )}
           {variant === "create" && (
-            <Button
-              size="iconSm"
-              disabled={disabled || isEmpty}
-              onClick={() => {
-                onSubmit({
-                  image,
-                  body: JSON.stringify(quillRef.current?.getContents()),
-                });
-              }}
-              className={cn(
-                "ml-auto",
-                isEmpty
-                  ? "bg-white hover:bg-white text-muted-foreground"
-                  : "bg-[#007a5a] hover:bg-[#007a5a]/80 text-white"
-              )}
-            >
-              <MdSend className="size-4" />
-            </Button>
+            <Hint label="Shift + Enter to Send">
+              <Button
+                size="iconSm"
+                disabled={disabled || isEmpty}
+                onClick={() => {
+                  onSubmit({
+                    image,
+                    body: JSON.stringify(quillRef.current?.getContents()),
+                  });
+                }}
+                className={cn(
+                  "ml-auto",
+                  isEmpty
+                    ? "bg-white hover:bg-white text-muted-foreground"
+                    : "bg-[#007a5a] hover:bg-[#007a5a]/80 text-white"
+                )}
+              >
+                <MdSend className="size-4" />
+              </Button>
+            </Hint>
           )}
         </div>
-        {variant === "create" && (
-          <div
-            className={cn(
-              "px-2 pb-1 text-[10px] text-muted-foreground flex justify-end opacity-0 transition",
-              !isEmpty && "opacity-100"
-            )}
-          >
-            <kbd>
-              <strong>Shift + Enter</strong> To Send
-            </kbd>
-          </div>
-        )}
       </div>
     </div>
   );

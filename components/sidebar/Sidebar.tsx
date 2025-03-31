@@ -1,5 +1,3 @@
-import SidebarButton from "./SidebarButton";
-import { usePathname, useRouter } from "next/navigation";
 import {
   Plus,
   Bell,
@@ -8,11 +6,15 @@ import {
   MoreHorizontal,
   MessagesSquare,
 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
+import SidebarButton from "@/components/sidebar/SidebarButton";
+
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
 import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
-import { useCurrentMember } from "@/hook/member/useCurrentMember";
 
 const Sidebar = () => {
   const router = useRouter();

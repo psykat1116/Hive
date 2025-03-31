@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 import {
   Dialog,
@@ -7,8 +6,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { Button } from "@/components/ui/button";
 
 export const useConfirm = (
   title: string,

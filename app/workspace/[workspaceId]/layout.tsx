@@ -1,10 +1,11 @@
 "use client";
+import { Loader } from "lucide-react";
+
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { Loader } from "lucide-react";
 import { usePanel } from "@/hook/usePanel";
 import Thread from "@/components/thread/Thread";
 import ToolBar from "@/components/toolbar/ToolBar";

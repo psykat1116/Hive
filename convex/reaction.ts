@@ -1,7 +1,8 @@
 import { v } from "convex/values";
+import { getAuthUserId } from "@convex-dev/auth/server";
+
 import { Id } from "./_generated/dataModel";
 import { mutation, QueryCtx } from "./_generated/server";
-import { getAuthUserId } from "@convex-dev/auth/server";
 
 const getMember = async (
   ctx: QueryCtx,

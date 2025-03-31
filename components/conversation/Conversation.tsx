@@ -1,12 +1,15 @@
+import { Loader } from "lucide-react";
+
+import MessageList from "@/components/chat/MessageList";
+import ConversationInput from "@/components/conversation/ConversationInput";
+import ConversationHeader from "@/components/conversation/ConversationHeader";
+
 import { Id } from "@/convex/_generated/dataModel";
+
+import { usePanel } from "@/hook/usePanel";
+import { useMemberId } from "@/hook/params/useMemberId";
 import { useGetMember } from "@/hook/member/useGetMember";
 import { useGetMessages } from "@/hook/message/useGetMessages";
-import { useMemberId } from "@/hook/params/useMemberId";
-import { Loader } from "lucide-react";
-import ConversationHeader from "./ConversationHeader";
-import ConversationInput from "./ConversationInput";
-import MessageList from "../chat/MessageList";
-import { usePanel } from "@/hook/usePanel";
 
 interface ConversationProps {
   id: Id<"conversations">;

@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import WorkSpaceModal from "@/components/modal/WorkSpaceModal";
+
 import ChannelModal from "@/components/modal/ChannelModal";
+import WorkSpaceModal from "@/components/modal/WorkSpaceModal";
 
 const ModalProvider = () => {
   const [mounted, setMounted] = useState(false);

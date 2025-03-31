@@ -1,7 +1,3 @@
-import { Id } from "@/convex/_generated/dataModel";
-import { useCurrentMember } from "@/hook/member/useCurrentMember";
-import React from "react";
-import { Button } from "@/components/ui/button";
 import {
   AlertTriangle,
   ChevronDown,
@@ -10,16 +6,10 @@ import {
   User,
   X,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "../ui/separator";
 import Link from "next/link";
-import { useUpdateMember } from "@/hook/member/useUpdateMember";
-import { useDeleteMember } from "@/hook/member/useDeleteMember";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
-import { useGetMember } from "@/hook/member/useGetMember";
 import { toast } from "sonner";
-import { useConfirm } from "@/hook/useConfirm";
 import { useRouter } from "next/navigation";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,6 +17,18 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import { Id } from "@/convex/_generated/dataModel";
+
+import { useConfirm } from "@/hook/useConfirm";
+import { useGetMember } from "@/hook/member/useGetMember";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useDeleteMember } from "@/hook/member/useDeleteMember";
+import { useUpdateMember } from "@/hook/member/useUpdateMember";
+import { useCurrentMember } from "@/hook/member/useCurrentMember";
 
 interface ProfileProps {
   memberId: Id<"members">;

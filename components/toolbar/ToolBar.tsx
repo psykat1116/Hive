@@ -1,8 +1,10 @@
 "use client";
-import { Button } from "../ui/button";
-import { Info, Search } from "lucide-react";
-import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
-import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import Link from "next/link";
+import Image from "next/image";
+import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,15 +14,15 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { useState } from "react";
-import { useGetChannels } from "@/hook/channel/useGetChannels";
-import { useGetMembers } from "@/hook/member/useGetMembers";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import UserButton from "@/components/auth/UserButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Image from "next/image";
-import UserButton from "../auth/UserButton";
-import Link from "next/link";
+
+import { useGetMembers } from "@/hook/member/useGetMembers";
+import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
+import { useGetChannels } from "@/hook/channel/useGetChannels";
 import { useCurrentMember } from "@/hook/member/useCurrentMember";
+import { useGetWorkSpace } from "@/hook/workspace/useGetWorkSpace";
 
 const ToolBar = () => {
   const router = useRouter();
@@ -42,6 +44,18 @@ const ToolBar = () => {
     setOpen(false);
     router.push(`/workspace/${workspaceId}/member/${id}`);
   };
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "s" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   return (
     <nav className="bg-[#481349] flex items-center justify-between h-13 p-1.5 px-3.5 gap-4">

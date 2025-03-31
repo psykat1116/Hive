@@ -1,13 +1,16 @@
-import { GetMessagesReturnType } from "@/hook/message/useGetMessages";
-import React, { useState } from "react";
+import { useState } from "react";
+import { Loader } from "lucide-react";
 import { differenceInMinutes, format, isToday, isYesterday } from "date-fns";
-import Message from "./Message";
-import ChannelHero from "../channel/ChannelHero";
+
 import { Id } from "@/convex/_generated/dataModel";
+
+import Message from "@/components/chat/Message";
+import ChannelHero from "@/components/channel/ChannelHero";
+import ConversationHero from "@/components/conversation/ConversationHero";
+
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { useCurrentMember } from "@/hook/member/useCurrentMember";
-import { Loader } from "lucide-react";
-import ConversationHero from "../conversation/ConversationHero";
+import { GetMessagesReturnType } from "@/hook/message/useGetMessages";
 
 interface MessageListProps {
   channelName?: string;

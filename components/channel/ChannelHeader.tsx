@@ -1,5 +1,7 @@
+import { toast } from "sonner";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -9,16 +11,15 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Trash } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 import { useConfirm } from "@/hook/useConfirm";
-import { useUpdateChannel } from "@/hook/channel/useUpdateChannel";
-import { useDeleteChannel } from "@/hook/channel/useDeleteChannel";
 import { useChannelId } from "@/hook/params/useChannelId";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { useWorkSpaceId } from "@/hook/params/useWorkSpaceId";
 import { useCurrentMember } from "@/hook/member/useCurrentMember";
+import { useUpdateChannel } from "@/hook/channel/useUpdateChannel";
+import { useDeleteChannel } from "@/hook/channel/useDeleteChannel";
 
 interface ChannelHeaderProps {
   name: string;

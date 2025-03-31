@@ -1,20 +1,22 @@
-import { Doc, Id } from "@/convex/_generated/dataModel";
-import { format, isToday, isYesterday } from "date-fns";
-import dynamic from "next/dynamic";
-import React from "react";
-import Hint from "../Hint";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import Thumbnail from "./Thumbnail";
-import MessageToolbar from "./MessageToolbar";
-import { useUpdateMessage } from "@/hook/message/useUpdateMessage";
 import { toast } from "sonner";
+import dynamic from "next/dynamic";
+import Hint from "@/components/Hint";
+import { format, isToday, isYesterday } from "date-fns";
+
 import { cn } from "@/lib/utils";
-import { useDeleteMessage } from "@/hook/message/useDeleteMessage";
+import { Doc, Id } from "@/convex/_generated/dataModel";
+
+import Thumbnail from "@/components/chat/Thumbnail";
+import Reactions from "@/components/chat/Reactions";
+import Threadbar from "@/components/thread/Threadbar";
+import MessageToolbar from "@/components/chat/MessageToolbar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import { usePanel } from "@/hook/usePanel";
 import { useConfirm } from "@/hook/useConfirm";
 import { useToggleReaction } from "@/hook/useToggleReaction";
-import Reactions from "./Reactions";
-import { usePanel } from "@/hook/usePanel";
-import Threadbar from "../thread/Threadbar";
+import { useUpdateMessage } from "@/hook/message/useUpdateMessage";
+import { useDeleteMessage } from "@/hook/message/useDeleteMessage";
 
 interface MessageProps {
   id: Id<"messages">;

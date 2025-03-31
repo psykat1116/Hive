@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Doc } from "@/convex/_generated/dataModel";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronUpIcon, Plus } from "lucide-react";
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,10 +11,11 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
+import { Button } from "@/components/ui/button";
 import { useGetWorkSpaces } from "@/hook/workspace/useGetWorkSpaces";
+import { useCreateWorkSpaceModal } from "@/store/useCreateWorkSpaceModal";
+
+import { Doc } from "@/convex/_generated/dataModel";
 
 interface WorkSpaceHeaderProps {
   workspace: Doc<"workspaces">;
@@ -25,24 +27,12 @@ const WorkSpaceHeader = ({ workspace }: WorkSpaceHeaderProps) => {
   const { data: workspaces } = useGetWorkSpaces();
   const { openModal } = useCreateWorkSpaceModal();
 
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "s" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setIsOpen((open) => !open);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
-
   return (
     <div className="flex items-center justify-between px-2 h-[49px] gap-0.5">
       <Button
         onClick={() => setIsOpen(true)}
         variant="transparent"
-        className="font-semibold text-lg w-full p-1 overflow-hidden justify-between rounded-sm"
+        className="font-semibold text-lg w-full p-1 overflow-hidden justify-between rounded-sm bg-neutral-50/10"
       >
         <span className="truncate">{workspace.name}</span>
         <ChevronUpIcon className="size-4 shrink-0 ml-2" />

@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../ui/button";
 import { FaChevronDown } from "react-icons/fa";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ConversationHeaderProps {
   memberName?: string;
