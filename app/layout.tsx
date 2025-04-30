@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Hive",
     images: [
       {
-        url: "https://raw.githubusercontent.com/psykat1116/Hive/refs/heads/master/public/OpenGraph.png",
+        url: "https://hive-rouge.vercel.app/OpenGraph.png",
         width: 1920,
         height: 949,
         alt: "Hive",
