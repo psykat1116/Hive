@@ -2,6 +2,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
               <Toaster />
               <ModalProvider />
               {children}
+              <Analytics />
             </body>
           </html>
         </NuqsAdapter>
